@@ -39,6 +39,9 @@ class OptionsMenu extends MusicBeatState
 			new PreloadImagesOption()
 			
 		]),
+                #if android
+	        new StateOption("Android Controls",new android.CastomAndroidControls()),
+                #end
 		new OptionCatagory("Controls",[]),
 		new OptionCatagory("Exit",[]),
 	];
@@ -83,6 +86,9 @@ class OptionsMenu extends MusicBeatState
 
 		changeSelection(0);
 		
+                #if android
+	        addVirtualPad(FULL, A_B);
+                #end
 
 		super.create();
 	}
