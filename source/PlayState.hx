@@ -960,6 +960,10 @@ class PlayState extends MusicBeatState
 		
 		doof.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
+		
+                #if android
+	        addAndroidControls();
+                #end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1115,6 +1119,10 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 		inCutscene = false;
+		
+	        #if android
+	        androidc.visible = true;
+	        #end
 		
 		generateStaticArrowsDAD();
 		generateStaticArrowsBF();
@@ -1957,7 +1965,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.text = "Misses:" + misses + " | " + "Score:" + songScore + " | " + "KPS:" + kps + "(" + kpsMax + ")" + " | " + "Accuracy:" + totalAccuracy + "%" + " | " + "Rank:" + totalRank;
 		
 
-		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
+		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;
@@ -2503,6 +2511,9 @@ class PlayState extends MusicBeatState
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
+                #if android
+	        androidc.visible = false;
+	        #end
 		if (SONG.validScore)
 		{
 			#if !switch
