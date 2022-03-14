@@ -26,50 +26,38 @@ class MusicBeatState extends FlxUIState
 
 	#if android
 	var _virtualpad:FlxVirtualPad;
-	var androidc:AndroidControls;
-	var trackedinputsUI:Array<FlxActionInput> = [];
-	var trackedinputsNOTES:Array<FlxActionInput> = [];
+	var _hitbox:Hitbox;
+	var trackedinputs:Array<FlxActionInput> = [];
 	#end
-	
-	#if android
+
+	#if android	
 	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
 		_virtualpad = new FlxVirtualPad(DPad, Action);
 		_virtualpad.alpha = 0.75;
 		add(_virtualpad);
-		controls.setVirtualPadUI(_virtualpad, DPad, Action);
-		trackedinputsUI = controls.trackedinputsUI;
-		controls.trackedinputsUI = [];
+		controls.setVirtualPad(_virtualpad, DPad, Action);
+		trackedinputs = controls.trackedinputs;
+		controls.trackedinputs = [];
 	}
 	#end
 
-	#if android
-	public function addAndroidControls() {
-                androidc = new AndroidControls();
+        #if android
+	public function addHitbox() {               
+		_hitbox = new Hitbox();
 
-		switch (androidc.mode)
-		{
-			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
-				controls.setVirtualPadNOTES(androidc._virtualPad, FULL, NONE);
-			case DUO:
-				controls.setVirtualPadNOTES(androidc._virtualPad, DUO, NONE);
-			case HITBOX:
-				controls.setHitBox(androidc._hitbox);
-			default:
-		}
-
-		trackedinputsNOTES = controls.trackedinputsNOTES;
-		controls.trackedinputsNOTES = [];
+		controls.setHitBox(_hitbox);
+		trackedinputs = controls.trackedinputs;
+		controls.trackedinputs = [];
 
 		var camcontrol = new flixel.FlxCamera();
 		FlxG.cameras.add(camcontrol);
 		camcontrol.bgColor.alpha = 0;
-		androidc.cameras = [camcontrol];
+		_hitbox.cameras = [camcontrol];
 
-		androidc.visible = false;
-
-		add(androidc);
+		_hitbox.visible = false;
+		add(_hitbox);
 	}
-	#end
+        #end
 
 	#if android
         public function addPadCamera() {
@@ -82,8 +70,7 @@ class MusicBeatState extends FlxUIState
 	
 	override function destroy() {
 		#if android
-		controls.removeFlxInput(trackedinputsUI);
-		controls.removeFlxInput(trackedinputsNOTES);	
+		controls.removeFlxInput(trackedinputs);
 		#end	
 		
 		super.destroy();
