@@ -169,6 +169,10 @@ class FreeplayState extends MusicBeatState
 			trace(md);
 		 */
 
+                #if android
+                addVirtualPad(FULL, A_B_C_X_Y);
+                #end
+
 		super.create();
 	}
 
