@@ -26,11 +26,11 @@ class MusicBeatState extends FlxUIState
 
 	#if android
 	var _virtualpad:FlxVirtualPad;
-	var _hitbox:Hitbox;
+	var androidc:AndroidControls;
 	var trackedinputs:Array<FlxActionInput> = [];
 	#end
-
-	#if android	
+	
+	#if android
 	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
 		_virtualpad = new FlxVirtualPad(DPad, Action);
 		_virtualpad.alpha = 0.75;
@@ -41,23 +41,34 @@ class MusicBeatState extends FlxUIState
 	}
 	#end
 
-        #if android
-	public function addHitbox() {               
-		_hitbox = new Hitbox();
+	#if android
+	public function addAndroidControls() {
+                androidc = new AndroidControls();
 
-		controls.setHitBox(_hitbox);
+		switch (androidc.mode)
+		{
+			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
+				controls.setVirtualPad(androidc._virtualPad, FULL, NONE);
+			case DUO:
+				controls.setVirtualPad(androidc._virtualPad, DUO, NONE);
+			case HITBOX:
+				controls.setHitBox(androidc._hitbox);
+			default:
+		}
+
 		trackedinputs = controls.trackedinputs;
 		controls.trackedinputs = [];
 
 		var camcontrol = new flixel.FlxCamera();
 		FlxG.cameras.add(camcontrol);
 		camcontrol.bgColor.alpha = 0;
-		_hitbox.cameras = [camcontrol];
+		androidc.cameras = [camcontrol];
 
-		_hitbox.visible = false;
-		add(_hitbox);
+		androidc.visible = false;
+
+		add(androidc);
 	}
-        #end
+	#end
 
 	#if android
         public function addPadCamera() {
