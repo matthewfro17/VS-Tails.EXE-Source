@@ -306,7 +306,7 @@ class TitleState extends MusicBeatState
 
 			// If it's Friday according to da clock
 			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
+				//NGio.unlockMedal(61034);
 			#end
 
 			titleText.animation.play('press');
