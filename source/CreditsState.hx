@@ -48,6 +48,10 @@ class CreditsState extends MusicBeatState
 		bg.antialiasing = true;
 		add(bg);
 
+                #if android
+	        addVirtualPad(UP_DOWN, A_B);
+                #end
+
 		super.create();
 
 	}
