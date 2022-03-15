@@ -67,19 +67,6 @@ class Option
 	public function right():Bool { return false; }
 }
 
-class StateOption extends Option
-{
-	private var state:FlxState;
-	public function new(name:String,state:FlxState){
-		super();
-		this.state=state;
-		this.name=name;
-	}
-	public override function accept(){
-		FlxG.switchState(state);
-		return false;
-	}
-}
 
 class DownscrollOption extends Option
 {
