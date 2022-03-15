@@ -400,6 +400,6 @@ class CastomAndroidControls extends Option
 
 	private override function updateDisplay():String
 	{
-		return "Castom Controls ";
+		return "Castom Controls";
 	}
 }
