@@ -40,9 +40,6 @@ class OptionsMenu extends MusicBeatState
 			
 		]),
 		new OptionCatagory("Controls",[]),
-                #if android
-                new StateOption("Android Controls",new android.CastomAndroidControls()),
-                #end
 		new OptionCatagory("Exit",[]),
 	];
 	
