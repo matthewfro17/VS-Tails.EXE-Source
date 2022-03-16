@@ -26,7 +26,7 @@ class OptionsMenu extends MusicBeatState
 		new OptionCatagory("Preferences", [
 			new DownscrollOption(),
                         #if android
-			MusicBeatState.switchState(new android.CastomAndroidControls());
+			new android.CastomAndroidControls(),
                         #end
 			new MiddlescrollOption(),
 			new HitsoundsOption(),
