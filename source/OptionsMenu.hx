@@ -234,7 +234,7 @@ class OptionsMenu extends MusicBeatState
 					
 				}
 			}
-			else if(controls.LEFT_P && isCat)
+			else if(if(FlxG.keys.justPressed.LEFT && isCat)
 			{
 				if(currentSelectedCat.getOptions()[curSelected].left())
 				{
@@ -243,7 +243,7 @@ class OptionsMenu extends MusicBeatState
 					grpControls.add(ctrl);
 					ctrl.isMenuItem = true;
 				}
-			}else if (controls.RIGHT_P && isCat)
+			}else if (if(FlxG.keys.justPressed.RIGHT && isCat)
 			{
 				if(currentSelectedCat.getOptions()[curSelected].right())
 				{
