@@ -384,19 +384,6 @@ class FullscreenOption extends Option
 	}
 }
 
-class AndroidControls extends Option
-{
-	public override function press():Bool
-	{
-		if (OptionsMenu.isInPause)
-			return false;
-		trace("switch");
-		MusicBeatState.switchState(new android.CastomAndroidControls());
-		return false;
-	}
 
-	private override function updateDisplay():String
-	{
-		return "Android Controls";
-	}
-}
+
+
