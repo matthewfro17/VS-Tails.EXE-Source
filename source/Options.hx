@@ -391,7 +391,7 @@ class AndroidControls extends Option
 		if (OptionsMenu.isInPause)
 			return false;
 		trace("switch");
-		FlxG.switchState(new android.CastomAndroidControls());
+		MusicBeatState.switchState(new android.CastomAndroidControls());
 		return false;
 	}
 
