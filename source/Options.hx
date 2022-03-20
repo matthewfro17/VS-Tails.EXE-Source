@@ -391,7 +391,7 @@ class AndroidControls extends Option
 		super();
 	}
 
-	public override function press():Bool
+	public override function press(changeData:Bool):Bool
 	{
 		FlxG.switchState(new android.CastomAndroidControls());
 		return false;
