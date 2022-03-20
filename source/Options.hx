@@ -384,6 +384,24 @@ class FullscreenOption extends Option
 	}
 }
 
+class AndroidControls extends Option
+{
+	public function new()
+	{
+		super();
+	}
 
+	public override function press():Bool
+	{
+		if (changeData)
+			return false;
+		trace("switch");
+		FlxG.switchState(new android.CastomAndroidControls());
+		return false;
+	}
 
-
+	private override function updateDisplay():String
+	{
+		return "Android Controls";
+	}
+}
