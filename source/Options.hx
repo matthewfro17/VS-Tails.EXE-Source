@@ -393,9 +393,6 @@ class AndroidControls extends Option
 
 	public override function press():Bool
 	{
-		if (OptionsMenu.isInPause)
-			return false;
-		trace("switch");
 		FlxG.switchState(new android.CastomAndroidControls());
 		return false;
 	}
