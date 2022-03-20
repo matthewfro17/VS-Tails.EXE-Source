@@ -393,6 +393,7 @@ class AndroidControls extends Option
 
 	public override function press(changeData:Bool):Bool
 	{
+		if(changeData)
 		FlxG.switchState(new android.CastomAndroidControls());
 		return false;
 	}
