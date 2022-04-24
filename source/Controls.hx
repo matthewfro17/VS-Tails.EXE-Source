@@ -12,11 +12,10 @@ import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 #if android
 import flixel.group.FlxGroup;
-import android.Hitbox;
+import android.FlxHitbox;
 import android.FlxVirtualPad;
 import flixel.ui.FlxButton;
 #end
-
 
 #if (haxe >= "4.0.0")
 enum abstract Action(String) to String from String
@@ -277,14 +276,14 @@ class Controls extends FlxActionSet
 	#if android
 	public var trackedinputs:Array<FlxActionInput> = [];	
 
-	public function addbutton(action:FlxActionDigital, button:FlxButton, state:FlxInputState) {
+	public function addbutton(action:FlxActionDigital, button:FlxButton, state:FlxInputState) 
+	{
 		var input = new FlxActionInputDigitalIFlxInput(button, state);
 		trackedinputs.push(input);
-		
 		action.add(input);
 	}
 
-	public function setHitBox(hitbox:Hitbox) 
+	public function setHitBox(hitbox:FlxHitbox) 
 	{
 		inline forEachBound(Control.UP, (action, state) -> addbutton(action, hitbox.buttonUp, state));
 		inline forEachBound(Control.DOWN, (action, state) -> addbutton(action, hitbox.buttonDown, state));
@@ -294,11 +293,6 @@ class Controls extends FlxActionSet
 	
 	public function setVirtualPad(virtualPad:FlxVirtualPad, ?DPad:FlxDPadMode, ?Action:FlxActionMode) 
 	{
-		if (DPad == null)
-			DPad = NONE;
-		if (Action == null)
-			Action = NONE;
-		
 		switch (DPad)
 		{
 			case UP_DOWN:
@@ -358,7 +352,7 @@ class Controls extends FlxActionSet
                                 //nothing
 			case NONE:
 		}
-	}
+	}	
 
 	public function removeFlxInput(Tinputs) {
 		for (action in this.digitalActions)
