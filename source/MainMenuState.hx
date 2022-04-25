@@ -181,10 +181,6 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-                #if android
-                addVirtualPad(UP_DOWN, A_B);
-                #end
-
 		super.create();
 	}
 
@@ -234,13 +230,13 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-			if (controls.UP_P)
+			if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.W #if android || _virtualpad.buttonUp.pressed #end)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 			}
 
-			if (controls.DOWN_P)
+			if (FlxG.keys.justPressed.DOWN || FlxG.keys.justPressed.S #if android || _virtualpad.buttonDown.pressed #end)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);
@@ -257,7 +253,7 @@ class MainMenuState extends MusicBeatState
 			{
 				if (optionShit[curSelected] == 'donate')
 				{
-					//fancyOpenURL("https://youtu.be/dQw4w9WgXcQ");
+					//fancyOpenURL("https://ninja-muffin24.itch.io/funkin");
 				}
 				else
 				{
